@@ -3,7 +3,8 @@
 import talib as tl
 import pandas as pd
 import logging
-from datetime import datetime, timedelta
+import utils
+from datetime import timedelta
 
 
 # 使用示例：result = backtrace_ma250.check(code_name, data, end_date=end_date)
@@ -69,8 +70,7 @@ def check(code_name, data, end_date=None, threshold=60):
             if row['收盘'] < recent_lowest_row['收盘']:
                 recent_lowest_row = row
 
-    date_diff = datetime.date(datetime.strptime(recent_lowest_row['日期'], '%Y-%m-%d')) - \
-                datetime.date(datetime.strptime(highest_row['日期'], '%Y-%m-%d'))
+    date_diff = utils.ensure_date(recent_lowest_row['日期']) - utils.ensure_date(highest_row['日期'])
 
     if not(timedelta(days=10) <= date_diff <= timedelta(days=50)):
         return False

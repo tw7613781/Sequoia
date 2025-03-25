@@ -16,4 +16,4 @@ dependencies:
   - pip
   - pip:
     - wxpusher==2.2.0
-    - akshare==1.14.60
+    - akshare==1.16.61

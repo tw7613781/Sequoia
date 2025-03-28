@@ -1,14 +1,14 @@
 # -*- encoding: UTF-8 -*-
-import strategy.high_tight_flag
-import utils
-import strategy.enter as enter
-import strategy.low_atr as low_atr
-import strategy.enter as enter
-import strategy.backtrace_ma250 as backtrace_ma250
-import strategy.parking_apron as parking_apron
-import strategy.breakthrough_platform as breakthrough_platform
 import logging
+
 import settings
+import strategy.backtrace_ma250 as backtrace_ma250
+import strategy.breakthrough_platform as breakthrough_platform
+import strategy.enter as enter
+import strategy.high_tight_flag
+import strategy.low_atr as low_atr
+import strategy.parking_apron as parking_apron
+import utils
 
 # data = utils.load("000012.h5")
 #
@@ -24,7 +24,7 @@ import settings
 #
 # average_true_range = average_true_range_list[-1]
 #
-from strategy import turtle_trade, high_tight_flag, climax_limitdown
+from strategy import climax_limitdown, high_tight_flag, turtle_trade
 from work_flow import process
 
 settings.init()
@@ -71,17 +71,17 @@ settings.init()
 # data = ts.get_stock_basics()
 # print(data)
 
-stocks = [('002728', '特一药业')]
+stocks = [("002728", "特一药业")]
 strategies = {
-        '海龟交易法则': turtle_trade.check_enter,
-        # '放量上涨': enter.check_volume,
-        # '均线多头': keep_increasing.check,
-        # '停机坪': parking_apron.check,
-        # '回踩年线': backtrace_ma250.check,
-        '高而窄的旗形': high_tight_flag.check,
-        '放量跌停': climax_limitdown.check,
-        # '突破平台': breakthrough_platform.check,
-        # '无大幅回撤': low_backtrace_increase.check,
-    }
+    "海龟交易法则": turtle_trade.check_enter,
+    # '放量上涨': enter.check_volume,
+    # '均线多头': keep_increasing.check,
+    # '停机坪': parking_apron.check,
+    # '回踩年线': backtrace_ma250.check,
+    "高而窄的旗形": high_tight_flag.check,
+    "放量跌停": climax_limitdown.check,
+    # '突破平台': breakthrough_platform.check,
+    # '无大幅回撤': low_backtrace_increase.check,
+}
 
 process(stocks, strategies)

@@ -12,95 +12,25 @@
 
 安装 conda 后，切换到项目专属环境进行配置，例如：
 ```
-conda create -n sequoia39 python=3.9
+# 在包含 dependencies.yml 文件的目录下运行
+conda env create -f dependencies.yml
 conda activate sequoia39
 ```
 
- ### 根据不同的平台安装TA-Lib程序
+###  验证依赖安装
 
-* Mac OS X  (x86_64)
+```
+conda activate sequoia
+python test_sequoia_installation.py
+```
 
-    ```  
-    $ brew install ta-lib    
-    # conda 环境下 可直接执行
-    $ conda install -c conda-forge ta-lib
-    ``` 
+###  format源码
 
-* Mac OS X (arm64)
-
-    需要特殊说明的是
-    M1 芯片的 Mac OS 很多库和依赖都需要基于 arm64 来构建。
-    所以，这里首先需要确认安装的 homebrew 是 arm 版本，如果之前安装的 homebrew 是 x86 版本，推荐重装 homebrew。
-  1. 删除老版本 homebrew （如果之前安装的是 x86版本 homebrew，重装前需要删除）
-    ```
-      sudo rm -rf /usr/local/.git
-      rm -rf ~/Library/Caches/Homebrew
-      rm -rf /usr/local/Homebrew 
-    ```
-
-  2. 安装/重装 arm64 版本 homebrew
-    ```
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    ```
-
-   3. homebrew 初始化
-    ```
-    vim ~/.zshrc
-    
-    # 加入到系统环境变量
-    export PATH=/opt/homebrew/bin:$PATH
-    
-    source ~/.zshrc
-    # 确认版本信息
-    brew config 
-    ```
-  4. 过程中遇到问题的参考解决办法
-  - [macos - zsh problem: compinit:503: no such file or directory: /usr/local/share/zsh/site-functions/_brew - Stack Overflow](https://stackoverflow.com/questions/65747286/zsh-problem-compinit503-no-such-file-or-directory-usr-local-share-zsh-site)
-  - [The required file "libmini_racer.dylib" can't be found in mac M1 · Issue #143 · sqreen/PyMiniRacer](https://github.com/sqreen/PyMiniRacer/issues/143)
-  - [Installing python tables on mac with m1 chip - Stack Overflow](https://stackoverflow.com/questions/65839750/installing-python-tables-on-mac-with-m1-chip)
-
-  5. 经过以上步骤后，可以开始继续安装 `ta-lib` 了。 参考
-  - [TA-Lib · PyPI](https://pypi.org/project/TA-Lib/)
-  - [说说 talib(ta-lib) 这个技术指标库，各系统怎么最轻松安装 ta-lib - 知乎](https://zhuanlan.zhihu.com/p/546720500)
-
-  以下是完整的操作命令示例：
-
-    ```
-    # 操作示例
-    # 1. 创建专属 python 环境
-    conda create -n sequoia39 python=3.9
-    conda activate sequoia39
-    
-    # 2. 安装 ta-lib 库
-    arch -arm64 brew install ta-lib
-    export TA_INCLUDE_PATH="$(brew --prefix ta-lib)/include"
-    export TA_LIBRARY_PATH="$(brew --prefix ta-lib)/lib"
-    python3.9 -m pip install --no-cache-dir ta-lib
-    
-    # 3. 验证是否安装成功
-    python -c "import talib; print(talib.__version__)"
-    ```
-
-* Windows
-
-    下载 [ta-lib-0.4.0-msvc.zip](http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-msvc.zip)，解压到 ``C:\ta-lib``
-
-
-
-* Linux
-
-    下载 [ta-lib-0.4.0-src.tar.gz](http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz) :
-    ```
-    $ untar and cd
-    $ ./configure --prefix=/usr
-    $ make
-    $ sudo make install
-    ```
- ### 推荐使用Python3.8以上以及pip3
- ### Python 依赖:
- ```
- pip install -r requirements.txt 
- ```
+```
+conda activate sequoia
+./format_code.sh
+```
+ 
  ### 更新akshare数据接口
  本项目已切换至akshare数据接口，该项目更新频率较高，使用前建议检查接口更新
 ``` 

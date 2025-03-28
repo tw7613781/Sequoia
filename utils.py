@@ -6,10 +6,11 @@ import datetime
 def is_weekday():
     return datetime.datetime.today().weekday() < 5
 
+
 def ensure_date(date_value):
     """确保日期值转换为datetime.date类型"""
     if isinstance(date_value, str):
-        return datetime.datetime.strptime(date_value, '%Y-%m-%d').date()
+        return datetime.datetime.strptime(date_value, "%Y-%m-%d").date()
     elif isinstance(date_value, datetime.datetime):
         return date_value.date()
     elif isinstance(date_value, datetime.date):

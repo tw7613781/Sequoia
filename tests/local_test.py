@@ -10,8 +10,8 @@
 """
 import datetime
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # just for local test
     current_time = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    log_filename = 'sequoia-{}.log'.format(current_time)
+    log_filename = "sequoia-{}.log".format(current_time)
     print(log_filename)

@@ -7,7 +7,7 @@ from wxpusher import WxPusher
 
 def push(msg):
     if settings.config['push']['enable']:
-        response = WxPusher.send_message(msg, uids=[settings.config['push']['wxpusher_uid']],
+        response = WxPusher.send_message(msg, topic_ids=[settings.config['push']['topic_id']],
                                          token=settings.config['push']['wxpusher_token'])
         print(response)
     logging.info(msg)

@@ -4,5 +4,5 @@ end_date:
 
 push:
   enable: false
-  wxpusher_uid: ""
+  topic_id: ""
   wxpusher_token: ""

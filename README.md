@@ -21,7 +21,7 @@ conda activate sequoia
 
 ```
 conda activate sequoia
-python test_sequoia_installation.py
+python test_env_setup.py
 ```
 
 ###  format源码

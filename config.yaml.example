@@ -1,6 +1,9 @@
-cron: false
 data_dir: "data"
 end_date: 
+
+schedule:
+  enable: false
+  time: "09:00"
 
 push:
   enable: false

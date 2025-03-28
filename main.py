@@ -1,9 +1,7 @@
 # -*- encoding: UTF-8 -*-
 
-import datetime
 import logging
 import time
-from pathlib import Path
 
 import schedule
 
@@ -21,8 +19,10 @@ logging.basicConfig(format="%(asctime)s %(message)s", filename="sequoia.log")
 logging.getLogger().setLevel(logging.INFO)
 settings.init()
 
-if settings.config["cron"]:
-    EXEC_TIME = "15:15"
+if settings.config["schedule"]["enable"]:
+    EXEC_TIME = settings.config["schedule"]["time"]
+    if not EXEC_TIME:
+        raise ValueError("Schedule time is not set in the config file.")
     schedule.every().day.at(EXEC_TIME).do(job)
 
     while True:

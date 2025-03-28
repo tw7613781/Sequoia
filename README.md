@@ -65,6 +65,9 @@ $ python main.py
     # m h  dom mon dow   command
     0 3 * * 1-5 source /home/ubuntu/miniconda3/bin/activate python3.10; python3 /home/ubuntu/Sequoia/main.py >> /home/ubuntu/Sequoia/sequoia.log; source /home/ubuntu/miniconda3/bin/deactivate
    ```
+
+程序中的时间是服务器的本地时间，在部署的时候留意设置服务器时区为目标市场时区。
+
 #### 微信推送
 使用[WxPusher](https://wxpusher.zjiecode.com/docs/#/)实现了微信推送，用户需要自行获取wxpusher_token和topic_id，并配置到`config.yaml`中去。
 

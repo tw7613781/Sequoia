@@ -41,7 +41,8 @@ def run(stocks):
                 
                 # 打印进度
                 completed += 1
-                logging.info(f"数据获取进度: {completed}/{total}")
+                if completed % 50 == 0:
+                    logging.info(f"数据获取进度: {completed}/{total}")
 
             except Exception as exc:
                 logging.error("%s(%r) generated an exception: %s" % (stock[1], stock[0], exc))

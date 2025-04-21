@@ -34,7 +34,7 @@ def prepare():
     strategies = {
         # "放量上涨": enter.check_volume,
         # "均线多头": keep_increasing.check,
-        "海龟交易法则": turtle_trade.check_enter,
+        # "海龟交易法则": turtle_trade.check_enter,
         "停机坪": parking_apron.check,
         "回踩年线": backtrace_ma250.check,
         "无大幅回撤": low_backtrace_increase.check,

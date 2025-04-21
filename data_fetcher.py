@@ -2,6 +2,7 @@
 
 import concurrent.futures
 import logging
+import time
 
 import akshare as ak
 import talib as tl
@@ -24,8 +25,12 @@ def fetch(code_name):
 
 def run(stocks):
     stocks_data = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         future_to_stock = {executor.submit(fetch, stock): stock for stock in stocks}
+
+        completed = 0
+        total = len(stocks)
+
         for future in concurrent.futures.as_completed(future_to_stock):
             stock = future_to_stock[future]
             try:
@@ -33,7 +38,15 @@ def run(stocks):
                 if data is not None:
                     data = data.astype({"成交量": "double"})
                     stocks_data[stock] = data
-            except Exception as exc:
-                print("%s(%r) generated an exception: %s" % (stock[1], stock[0], exc))
+                
+                # 打印进度
+                completed += 1
+                logging.info(f"数据获取进度: {completed}/{total}")
 
+            except Exception as exc:
+                logging.error("%s(%r) generated an exception: %s" % (stock[1], stock[0], exc))
+                # 在发生错误后添加短暂延迟
+                time.sleep(0.5)
+
+    logging.info(f"成功获取 {len(stocks_data)}/{len(stocks)} 只股票的数据")
     return stocks_data

@@ -83,7 +83,7 @@ def check(code_name, data, end_date=None, threshold=60):
     vol_ratio = highest_row["成交量"] / recent_lowest_row["成交量"]
     back_ratio = recent_lowest_row["收盘"] / highest_row["收盘"]
 
-    if not (vol_ratio > 2 and back_ratio < 0.8):
+    if not (vol_ratio > 2.5 and back_ratio < 0.6):
         return False
 
     return True

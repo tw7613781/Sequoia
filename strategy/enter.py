@@ -80,7 +80,7 @@ def check_new(code_name, data, end_date=None, threshold=60):
 #   2017-11-16 保利地产
 def check_volume(code_name, data, end_date=None, threshold=60):
     if len(data) < threshold:
-        logging.debug("{0}:样本小于250天...\n".format(code_name))
+        logging.debug("{0}:样本小于{1}天...\n".format(code_name, threshold))
         return False
     data["vol_ma5"] = pd.Series(
         tl.MA(data["成交量"].values, 5), index=data.index.values

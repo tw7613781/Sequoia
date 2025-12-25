@@ -19,6 +19,10 @@ from strategy import (
     low_backtrace_increase,
     parking_apron,
     turtle_trade,
+    wyckoff_accumulation,
+    wyckoff_divergence,
+    wyckoff_selling_climax,
+    wyckoff_spring,
 )
 
 
@@ -35,12 +39,17 @@ def prepare():
         # "放量上涨": enter.check_volume,
         # "均线多头": keep_increasing.check,
         # "海龟交易法则": turtle_trade.check_enter,
-        "停机坪": parking_apron.check,
-        "回踩年线": backtrace_ma250.check,
-        "无大幅回撤": low_backtrace_increase.check,
+        # "停机坪": parking_apron.check,
+        # "回踩年线": backtrace_ma250.check,
+        # "无大幅回撤": low_backtrace_increase.check,
         # '突破平台': breakthrough_platform.check,
         # "高而窄的旗形": high_tight_flag.check,
         # "放量跌停": climax_limitdown.check,
+        # 威克夫策略
+        "威克夫-弹簧": wyckoff_spring.check,
+        "威克夫-缩量不跌": wyckoff_divergence.check,
+        "威克夫-SC反弹": wyckoff_selling_climax.check,
+        "威克夫-吸筹完成": wyckoff_accumulation.check,
     }
 
     # if datetime.datetime.now().weekday() == 0:

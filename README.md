@@ -6,6 +6,15 @@
 
 各策略中的`end_date`参数主要用于回测。
 
+### ⭐ 威克夫策略
+本项目新增了基于威克夫理论（Wyckoff Method）的四个经典选股策略，通过量价关系分析主力意图：
+- **威克夫弹簧策略**：识别假跌破后快速回升（经典买入信号）
+- **威克夫量价背离策略**：识别缩量不跌（吸筹完成信号）
+- **威克夫SC反弹策略**：识别恐慌性抛售后的反弹机会
+- **威克夫吸筹完成策略**：识别长期横盘后的放量突破
+
+详细文档请查看：[威克夫策略文档](README_WYCKOFF.md)
+
 ## 准备工作:
 ###  环境&依赖管理
 推荐使用 Miniconda来进行 Python 环境管理 [Miniconda — conda documentation](https://docs.conda.io/en/latest/miniconda.html)
